@@ -13,14 +13,16 @@ test('Find dependencies with the Bun plugin (path filter arguments)', async () =
 
   assert(!('src/button.dom.test.tsx' in issues.files));
   assert(!('src/feature/flow.test.ts' in issues.files));
+  assert(!('src/feature/input.test-d.ts' in issues.files));
   assert(!('src/api.integration.test.ts' in issues.files));
   assert(!('src/queue.test.mjs' in issues.files));
   assert('src/other.test.ts' in issues.files);
+  assert('src/input.test-d.ts' in issues.files);
 
   assert.deepEqual(counters, {
     ...baseCounters,
-    files: 1,
-    processed: 7,
-    total: 7,
+    files: 2,
+    processed: 8,
+    total: 8,
   });
 });

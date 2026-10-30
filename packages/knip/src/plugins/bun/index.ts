@@ -12,7 +12,7 @@ const title = 'Bun';
 const enablers =
   'This plugin is enabled when a `bun.lock` or `bun.lockb` file is found or a `bun test` script is configured.';
 
-const patterns = ['**/*.{test,spec}.{js,jsx,ts,tsx}', '**/*_{test,spec}.{js,jsx,ts,tsx}'];
+const patterns = ['**/*.{test,spec}.{js,jsx,ts,tsx}', '**/*_{test,spec}.{js,jsx,ts,tsx}', '**/*.test-d.ts'];
 
 const getBunTest = (script: string) => {
   for (const { binary, args } of getScriptCommands(script)) {
@@ -64,7 +64,6 @@ const resolve: Resolve = options => {
     if (!parsed) continue;
     const targets = parsed._.slice(1);
     for (const pattern of targets.length === 0 ? patterns : targets.flatMap(toPatterns)) inputs.push(toEntry(pattern));
-    inputs.push(toEntry('**/*.test-d.ts'));
     for (const specifier of [parsed.preload ?? []].flat()) inputs.push(toDeferResolve(specifier));
   }
   return inputs;

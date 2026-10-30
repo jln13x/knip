@@ -12,11 +12,12 @@ test('Enable the Bun plugin on a lockfile without treating test files as entries
   const { issues, counters } = await main(options);
 
   assert('index.test.ts' in issues.files);
+  assert('index.test-d.ts' in issues.files);
 
   assert.deepEqual(counters, {
     ...baseCounters,
-    files: 1,
-    processed: 2,
-    total: 2,
+    files: 2,
+    processed: 3,
+    total: 3,
   });
 });

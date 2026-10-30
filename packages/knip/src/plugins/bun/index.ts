@@ -57,13 +57,14 @@ const toPatterns = (arg: string) => {
 
 const resolve: Resolve = options => {
   const scripts = { ...options.rootManifest?.scripts, ...options.manifest.scripts };
-  const inputs: Input[] = [toEntry('**/*.test-d.ts'), toIgnore('bun', 'dependencies')];
+  const inputs: Input[] = [toIgnore('bun', 'dependencies')];
   for (const script of Object.values(scripts)) {
     if (typeof script !== 'string') continue;
     const parsed = getBunTest(script);
     if (!parsed) continue;
     const targets = parsed._.slice(1);
     for (const pattern of targets.length === 0 ? patterns : targets.flatMap(toPatterns)) inputs.push(toEntry(pattern));
+    inputs.push(toEntry('**/*.test-d.ts'));
     for (const specifier of [parsed.preload ?? []].flat()) inputs.push(toDeferResolve(specifier));
   }
   return inputs;

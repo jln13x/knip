@@ -57,7 +57,7 @@ const toPatterns = (arg: string) => {
 
 const resolve: Resolve = options => {
   const scripts = { ...options.rootManifest?.scripts, ...options.manifest.scripts };
-  const inputs: Input[] = [toIgnore('bun', 'dependencies')];
+  const inputs: Input[] = [toEntry('**/*.test-d.ts'), toIgnore('bun', 'dependencies')];
   for (const script of Object.values(scripts)) {
     if (typeof script !== 'string') continue;
     const parsed = getBunTest(script);

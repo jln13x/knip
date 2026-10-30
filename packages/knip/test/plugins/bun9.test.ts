@@ -20,7 +20,7 @@ test('Find dependencies with the Bun plugin (path filter arguments)', async () =
   assert.deepEqual(counters, {
     ...baseCounters,
     files: 1,
-    processed: 6,
-    total: 6,
+    processed: 7,
+    total: 7,
   });
 });

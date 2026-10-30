@@ -13,7 +13,7 @@ test('Find dependencies with the Bun plugin', async () => {
 
   assert.deepEqual(counters, {
     ...baseCounters,
-    processed: 2,
-    total: 2,
+    processed: 3,
+    total: 3,
   });
 });
